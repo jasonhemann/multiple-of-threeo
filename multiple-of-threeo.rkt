@@ -27,16 +27,16 @@
     [(fresh (a ad dd)
        (== `(,a ,ad . ,dd) bn)
        (conde
-        [(== a ad) (mod+1o dd)]
-        [(== `(,a ,ad) '(1 0)) (mod+2o dd)]
-        [(== `(,a ,ad) '(0 1)) (same-counto dd)]))]))
+         [(== a ad) (mod+1o dd)]
+         [(== `(,a ,ad) '(1 0)) (mod+2o dd)]
+         [(== `(,a ,ad) '(0 1)) (same-counto dd)]))]))
 
 (defrel (mod+2o bn)
   (conde
     [(== bn '(1))]
     [(fresh (a ad dd)
-        (== `(,a ,ad . ,dd) bn)
-        (conde
+       (== `(,a ,ad . ,dd) bn)
+       (conde
          [(== a ad) (mod+2o dd)]
          [(== `(,a ,ad) '(1 0)) (same-counto dd)]
          [(== `(,a ,ad) '(0 1)) (mod+1o dd)]))]))
