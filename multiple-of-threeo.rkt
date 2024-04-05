@@ -41,7 +41,6 @@
          [(== `(,a ,ad) '(1 0)) (same-counto dd)]
          [(== `(,a ,ad) '(0 1)) (mod+1o dd)]))]))
 
-
 #|
 
 (time (begin (run 10000 (q) (same-counto q)) #t))
@@ -49,6 +48,11 @@ cpu time: 86 real time: 88 gc time: 15
 #t
 
 |#
+
+(defrel (multiple-of-threeo bn)
+  (conde
+    [(== bn '())]
+    [(same-counto bn)]))
 
 (check-equal?
   (run 10 (q) (same-counto q))
