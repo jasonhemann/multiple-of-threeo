@@ -3,6 +3,9 @@
 
 "Turn crashing functions into succesful relations"
 
+;; An alternative would be to use #<void>, b/c you want some unit
+;; value, rather than a boolean.
+
 (define (evens#-odds#%3=1 bbn)
   (match bbn
     ['(1) #t]
