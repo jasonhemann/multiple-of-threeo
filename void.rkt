@@ -1,0 +1,2 @@
+#lang racket
+(provide void)
