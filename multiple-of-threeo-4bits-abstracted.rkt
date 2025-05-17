@@ -11,9 +11,8 @@
    [(fresh (a ad add addd dddd)
            (== `(,a ,ad ,add ,addd . ,dddd) bn)
            (conde
-            [(== a ad) (== ad add) (== add addd) (same-counto dddd)] ;; (_.0 _.0 _.0 _.0)
             [(== a ad) (== add addd)             (same-counto dddd)] ;; (_.0 _.0 _.1 _.1)
-            [(== a addd) (== ad add)             (same-counto dddd)] ;; (_.0 _.1 _.1 _.0)
+            [(== a addd) (== ad add) (=/= a ad)  (same-counto dddd)] ;; (_.0 _.1 _.1 _.0) (=/= (_.0 _.1))
             [(== a ad)
              (conde
               [(== `(,add ,addd) '(0 1))         (mod+1o dddd)]      ;; (_.0 _.0 0 1)
@@ -37,9 +36,8 @@
    [(fresh (a ad add addd dddd)
            (== `(,a ,ad ,add ,addd . ,dddd) bn)
            (conde
-            [(== a ad) (== ad add) (== add addd) (mod+1o dddd)]
             [(== a ad) (== add addd)             (mod+1o dddd)]
-            [(== a addd) (== ad add)             (mod+1o dddd)]
+            [(== a addd) (== ad add) (=/= a add) (mod+1o dddd)]
             [(== a ad)
              (conde
               [(== `(,add ,addd) '(0 1))         (mod+2o dddd)]
@@ -63,9 +61,8 @@
    [(fresh (a ad add addd dddd)
            (== `(,a ,ad ,add ,addd . ,dddd) bn)
            (conde
-            [(== a ad) (== ad add) (== add addd) (mod+2o dddd)]
             [(== a ad) (== add addd)             (mod+2o dddd)]
-            [(== a addd) (== ad add)             (mod+2o dddd)]
+            [(== a addd) (== ad add) (=/= a add) (mod+2o dddd)]
             [(== a ad)
              (conde
               [(== `(,add ,addd) '(0 1))         (same-counto dddd)]
