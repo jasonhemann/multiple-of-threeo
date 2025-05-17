@@ -4,11 +4,10 @@
 
 (defrel (same-counto bn)
   (conde
-   [(== bn `(1 1 1 1))]
-   [(== bn `(0 0 1 1))]
    [(== bn `(1 0 0 1))]
    [(== bn `(0 1 1))]
    [(== bn `(1 1))]
+   [(fresh (b) (== bn `(,b ,b 1 1)))]
    [(fresh (a ad add addd dddd)
            (== `(,a ,ad ,add ,addd . ,dddd) bn)
            (conde
@@ -33,9 +32,8 @@
   (conde
    [(== bn `(1 0 1 1))]
    [(== bn `(0 1 0 1))]
-   [(== bn `(1 1 1))]
-   [(== bn `(0 0 1))]
    [(== bn `(1))]
+   [(fresh (b) (== bn `(,b ,b 1)))]
    [(fresh (a ad add addd dddd)
            (== `(,a ,ad ,add ,addd . ,dddd) bn)
            (conde
@@ -60,9 +58,8 @@
   (conde
    [(== bn `(0 1))]
    [(== bn `(0 1 1 1))]
-   [(== bn `(1 1 0 1))]
-   [(== bn `(0 0 0 1))]
    [(== bn `(1 0 1))]
+   [(fresh (b) (== bn `(,b ,b 0 1)))]
    [(fresh (a ad add addd dddd)
            (== `(,a ,ad ,add ,addd . ,dddd) bn)
            (conde
@@ -129,5 +126,5 @@
 ; (time (run 10000 (q) (multiple-of-threeo-pm q)))
 ; (time (run 1 (q) (multiple-of-threeo-pm (build-num 99999999))))
 
-;; > (andmap (λ (s) (andmap (λ (n) (= (remainder n 3) 0)) s)) (map (λ (s) (map unbuild-num s)) (map all-solutions (run 100 (q) (multiple-of-threeo-pm q)))))
+;; > (andmap (λ (s) (andmap (λ (n) (= (remainder n 3) 0)) s)) (map (λ (s) (map unbuild-num s)) (map all-solutions (run 1000 (q) (multiple-of-threeo-pm q)))))
 ;; #t
